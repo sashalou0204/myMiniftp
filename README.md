@@ -23,18 +23,31 @@ FTP是一个会话交互系统session，客户端每次连接FTP服务端都会�
 abor，需要开启紧急模式void activate__oobinline(int fd), 开启一个能接收SIGURG信号, 接收信号判断是否是ABOR， 是就退出
 
 最后呢，代码模块简单介绍一下：
+
 common.h是所有需要的系统头文件
+
 sysutil 是系统工具模块，比如数据按行读，对指定端口进行连接，获取时间等
+
 ftpcodes：父子进程之间，客户端与服务端之间在给出命令之后，不管什么结果都需要给一个回应，这就是回应的宏
+
 ftpproto.c：子进程的处理(服务器对外能做的事的所有函数
+
 hash ：客户端连接数限制中用
+
 miniftpd.conf：配置项
+
 parseconf ：解析配置项
+
 privparent ：父进程的处理
+
 privsock: 父子进程的通信函数，要发送结果啦，发送fd啦，发送命令啦等等
+
 session：begin_session()函数，故事开始的地方， 会话的结构内容，父子进程要做的事handle_parent()、handle_child()
+
 str:对字符串的各种操作函数，像配置项还有命令都是字符串，解析的时候是要对字符串进行处理的，比如对等号前后进行分割， 去掉字符串的\r\n
+
 tunable:给配置项一些初始值
+
 
 
 
@@ -47,5 +60,6 @@ tunable:给配置项一些初始值
 
 当然，本项目的实现需要依托FTP工具，我用的是VSFTP
 Implementation of imitating VSFTP
+
 详细的分析介绍会在https://blog.csdn.net/qq_37299596/article/details/107152371 
 （觉得各功能实现已经比较清楚了，可能就将自己还有点模棱两可的理清楚，一些基础概念再扎实一下
